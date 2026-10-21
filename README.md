@@ -42,7 +42,7 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-
+My data comes from the TripAdvisor hotel reviews dataset (jniimi/tripadvisor-review-rating), a public collection on Hugging Face (https://huggingface.co/datasets/jniimi/tripadvisor-review-rating). Only the review text is used. My community is travelers posting hotel reviews on TripAdvisor. My classifier labels each review as positive, negative, or mixed.
 
 ---
 
@@ -56,7 +56,8 @@
 
 ### `label_one`
 
-**Definition:**
+**Definition:** 
+positive: Review is mostly favorable, with no major complaints.
 
 **Example 1:**
 >
@@ -67,12 +68,25 @@
 ### `label_two`
 
 **Definition:**
+negative: Review is mostly unfavorable, with no major praise.
 
 **Example 1:**
 >
 
 **Example 2:**
 >
+
+### `label_two`
+
+**Definition:**
+mixed: Significant praise and significant complaints.
+
+**Example 1:**
+>
+
+**Example 2:**
+>
+
 
 ### The hardest boundary
 
