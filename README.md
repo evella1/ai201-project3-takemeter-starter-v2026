@@ -54,39 +54,45 @@ My data comes from the TripAdvisor hotel reviews dataset (jniimi/tripadvisor-rev
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `Positive`
 
 **Definition:** 
-positive: Review is mostly favorable, with no major complaints.
+Review is mostly favorable, with no major complaints.
 
 **Example 1:**
 >
+Really excellent Hilton\nStayed here on business trips and the hotel is excellent for business trips. Staff is excellent and really helpful. VERY clean hotel. Best choice in San Diego; especially a Hilton.
 
 **Example 2:**
 >
+Exceptional service and comfort. Spent two nights here for a wedding in Brooklyn. The staff members were all exceptionally friendly and professional, from the doormen and bellhops to the front-desk and concierge. I was especially grateful that Kevin, a bartender in the Ritz's off-lobby bar, was able to tie my bowtie -- I would have looked pretty foolish otherwise. He made it look perfect. Our room was spacious and comfortable, with a large bathroom and king-size bed that provided some of the best sleep I can remember in a hotel. My only disappointment was that the fitness center did not offer a sauna or steam room.
 
-### `label_two`
+### `Negative`
 
 **Definition:**
-negative: Review is mostly unfavorable, with no major praise.
+Review is mostly unfavorable, with no major praise.
 
 **Example 1:**
 >
+Room is so small that I was initially claustrophobic. Bathroom is about as small as our toilet at home. Double beds should be outlawed! Who can get a good night's sleep in a bed so tiny? Staff are indifferent, although concierge was very helpful. No help offered with our 5 bags, no tea & coffee making facilities in room & no food services on site. Location is ok for walking to Times Square & Empire State Building, but not a good area for decent restaurants. This is not value for money & we would not stay here again.
+
 
 **Example 2:**
 >
+Getting to the room was interesting - we had to walk down an outdoor corridor, with gates, dragging our bags and at night... not really the most convenient access. We had an early flight the next morning to Hawaii, as well as other guests apparently, because we ended up with people sitting on the floor of the shuttle to get to the airport. Oh, and the driver totally didn't know what she was doing - we went to the wrong airline/terminal. The room was not fabulously clean, both in the sleeping area and the bathroom. Plus, our room(s) were on the ground floor and there was a car parked outside our window with lights on until about midnight.
 
-### `label_two`
+### `Mixed`
 
 **Definition:**
-mixed: Significant praise and significant complaints.
+Significant praise and significant complaints.
 
 **Example 1:**
 >
+Stayed one night. Looks like every holiday inn express. Friendly staff at check-in. Pillows were poor quality. I did got upgraded to suite which offers lots of space. Got free popcorn at check in. Not a lot to do in the evening.
 
 **Example 2:**
 >
-
+I know it’s pricey, but as they say location is everything and this is right in the middle of where we wanted to be (Times Square), so that helped our trip be even more enjoyable. The cost here is still comparable to prices of other hotels in the area, but I wish they would include WiFi in the guest rooms (especially since AT&T had two towers go down in the area, and my data connection was at zero almost the entire time of my trip). And I wish the hotel had better pillows and mattresses (like TempurPedic), but what they had was pretty standard for most any hotel anywhere and not what I would expect in a luxury hotel. I highly recommend a Times Square view and a high floor. Ours was on the 35th floor and an excellent (if not the best) view, and it was quiet and not noisy at all. I was told our room could go for $1800 on the night of New Years Eve. Our bathroom had a broken tile on the floor, and the water drained slowly out of the bathtub, but otherwise this was a great room. Another bad side is that the hotel twice lost a discount authorization form I had submitted to them in March, and that created a delay during checkin. They said they have no system for what to do with forms that are submitted more than two weeks in advance of the trip.
 
 ### The hardest boundary
 
