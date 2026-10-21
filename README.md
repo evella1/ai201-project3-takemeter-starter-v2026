@@ -181,15 +181,27 @@ I spent three nights here and have no complaints."
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+3 epochs, learning rate 2e-5, batch size 16, seed 42, max length 128 tokens.
+Trained on CPU (torch 2.14.1+cpu).
 
 **Anything I changed from the defaults, and why:**
+No changes.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+
+| Label | Train | Val | Test |
+|---|---|---|---|
+| positive | 93 | 21 | 20 |
+| negative | 23 | 5 | 5 |
+| mixed | 23 | 5 | 5 |
+| **Total** | 139 | 31 | 30 |
+
+'negative' and 'mixed' have only 5 examples each in the test split (under 8), so their F1 will move a lot between seeds.
 
 
 
@@ -206,17 +218,20 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to read the labelling rules in this README, label reviews 21-200 as positive, negative or mixed, list the cases it found hard, and fill in the label counts.
+- *What came back:* Labels for all 180 reviews and the counts. It also found two problems in my cold-labelled rows: a typo in a label and one review I had left unlabelled.
+- *What I changed:* I fixed the typo and labelled the missing row as positive. I skimmed the reviews to verify the labels. The hard cases showed me that my verdict rule doesn't say how strong a verdict must be to override the overall weight of the review.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to point out the hard cases it encountered while labelling.
+- *What came back:* Ten hard cases.
+- *What I changed:* I carefully re-checked the labels for all ten and changed the label for one of them. I then selected the three that best represent the decision rules and updated the hard-cases section of the README.
+
 
 **Pre-labelling disclosure:**
+
+I cold-labelled the first 20 reviews myself. Reviews 21-200 were pre-labelled by Claude using my taxonomy and decision rule. I then checked them by skimming, except for the ten hard cases, which I verified closely.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
