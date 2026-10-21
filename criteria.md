@@ -54,24 +54,26 @@ whether you hit them:
 ## 1.
 
 <!-- Your criterion. It must name a number. -->
-
+Macro-F1 of at least 0.70 on the test set, in all three seeds.
 
 
 **Why this target:**
 
-
-
+Most reviews will be positive, so plain accuracy would reward a model that
+always guesses "positive". Macro-F1 scores each label equally, so the model
+has to do well on all three. A guesser would get about 0.30, so 0.70 is
+a real improvement.
 ---
 
 ## 2.
 
 <!-- Your criterion. -->
 
-
+Per-label F1: positive and negative ≥ 0.80; mixed ≥ 0.50
 
 **Why this target:**
 
-
+Mixed is the smallest class and the fuzziest boundary (verdict vs. weight), so it gets a looser target. With few test examples its F1 will also vary across seeds.
 
 ---
 
@@ -79,23 +81,23 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+No label below 10% or above 80% of the dataset.
 
 **Why this target:**
 
-
+Hotel reviews skew positive, so up to 80% is realistic, but below 10% a label has too few test examples for a stable score.
 
 ---
 
 ## 4.
 
 <!-- Your criterion. -->
-
+Agreement of at least 0.60 between my labels and a second round of labels on 50 reviews.
 
 
 **Why this target:**
 
-
+The 'mixed' boundary is a judgment call. If I can't label the same reviews the same way twice, the model can't be expected to learn it.
 
 ---
 
@@ -103,11 +105,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+Predictions with confidence ≥ 0.80 are ≥ 90% accurate, and cover at least 50% of the test set.
 
 **Why this target:**
 
-
+A confident prediction should be trustworthy; the coverage condition stops a model from passing by being confident on only a few easy cases.
 
 ---
 

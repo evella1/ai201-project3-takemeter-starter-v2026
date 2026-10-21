@@ -98,12 +98,20 @@ I know it’s pricey, but as they say location is everything and this is right i
 
 **Which two labels:**
 
+mixed vs. positive/negative
+
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
 
-
-
+1. If the reviewer states an explicit, unconditional verdict (recommends it,
+   would return, "would avoid", "never again"), label by that verdict, even if
+   the review also lists complaints or praise on the other side.
+2. If there is no verdict (or it is hedged, e.g. "good only if under $200"),
+   label by weight: if one side is only a brief or minor mention, use the
+   dominant side.
+3. Label 'mixed' only if neither applies: substantial praise and substantial
+   criticism, with no clear verdict.
 ---
 
 ## The Dataset
@@ -112,9 +120,14 @@ I know it’s pricey, but as they say location is everything and this is right i
      cases. -->
 
 **Where the posts came from:**
+My data comes from the TripAdvisor hotel reviews dataset (jniimi/tripadvisor-review-rating), a public collection on Hugging Face (https://huggingface.co/datasets/jniimi/tripadvisor-review-rating).
+
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+
+Cold labelled the first 20, the rest was labeled with AI and more or less checked. 
+I also asked AI to point out those that were the hardest to label, reviewed the labels carefully and tightened the criteria.
 
 **Counts per label:**
 
