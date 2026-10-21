@@ -112,6 +112,12 @@ mixed vs. positive/negative
    dominant side.
 3. Label 'mixed' only if neither applies: substantial praise and substantial
    criticism, with no clear verdict.
+
+Examples:
+-  Praises location and staff but says "stay at one of the other hotels" → 'negative' (verdict wins)
+- "Rude staff and sirens", but "Perfect city centre hotel!!!" → 'positive' (verdict wins)
+- "Let's say it's ho-hum, good only below $200"→ 'mixed' (hedged verdict, balanced)
+- "Great location and staff, but very little sleep due to sirens", no verdict → 'mixed'
 ---
 
 ## The Dataset
@@ -133,10 +139,10 @@ I also asked AI to point out those that were the hardest to label, reviewed the 
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| positive | 134 | 67% |
+| negative | 33 | 16.5% |
+| mixed | 33 | 16.5% |
+| **Total** | 200 | 100% |
 
 **Three hard cases**
 
@@ -144,25 +150,30 @@ I also asked AI to point out those that were the hardest to label, reviewed the 
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+*The post:* "So, where to start - I always ask for a bathtub as I love a long soak. There is a bathtub but its half size so no chance of a soak. This could easily have been pointed out when booking but wasn't. On arrival, when asking for a full size tub was told it was $200 a day more for room with full size tub. Also, I'm pretty sure we're in a standard/superior room when we booked & paid for a deluxe. Our room & bed are tiny, friends staying here have much larger room & bed & we booked the same. Fortunately, its such a great city so you don't spend too much time in your room. The bed is small but very comfortable, Frette sheets delightful (& robes & Aveda toiletries). Asked for late check out only to be informed that from 12 noon to 6 pm would cost $249! How?? Lastly, the free wine & breakfast are a really nice treat but I have never been to a hotel that has a room service menu that doesn't have any breakfast items on it. Maybe its an NYC thing not to want to have breakfast in your room.... Location wise, the hotel wins, & the staff gave us great bar recommendations. When returning to my room after 5pm yesterday house-keeping hadn't managed to get to my room. Surely not 4 star service, turn-down/house-keeping happened when I was out for dinner but no choccies tonight!! On the other hand, we did recieve a bottle of wine when we mentioned it was our anniversary. As I say very mixed feelings. Can't say I'd reccomend this place..........."
+
+*Could have been:* mixed or negative
+
+*I chose, because:* negative. The reviewer calls it "mixed", but "Can't say I'd recommend" is a clear verdict, and the verdict rule comes first.
 
 **2.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+*The post:* "I recently stayed at the Westin Copley in Boston, MA while visiting family for Thanksgiving. I stayed in a Junior Suite (Room 1001). Things got off to a negative start at check-in as when I made my reservation, I was told I would have a room on a high floor. The 10th floor is not a high floor, in my opinion. Upon entering the room, I was definitely impressed with the size of the room and the view, despite not being higher up. Let me start with the good before I finish with the bad. The view was spectacular, the room was neat, and it may have had the most comfortable bed that I have ever slept on. Also, the staff was very friendly. Unfortunately, I have more bad comments. The desk in the room was so wobbly that it was un-useable. The bathroom is tiny, outdated, and I find it hard to believe that a hotel charging this much a night still has a shower/tub combo with a shower curtain. It did have a nice shower head but it was useless since the water pressure was so weak. The door in the bathroom is worn, weathered , and generally not in great shape. I had an issue with the TV reception the entire stay. I arrived on a Wednesday and noticed it but did not notify the front desk. Thursday morning it was so bad that I couldn't even watch it so I called the service number. A gentleman came up , did a few things behind the tv and said he had to reset the satellite. The reception never got any better. The noise wasn't a problem here but it is a tad annoying that the doors slam when closing, so you hear that in the hall. I expect that at an economy hotel when I travel on business but did not expect that here. One other troubling note was that there is no security with regards to the elevators to the guest rooms. Anyone can walk in and go to any floor without a room key. One final issue was the morning of check out , it took forever to get a guest services rep on the phone to answer a question that I had. I don't think all of these negatives are a big deal , individually, but add them all up over a 3 day/2 night stay and it impacts your overall experience. Add in the hefty rates, and I would say that the experience was average at best. I am not likely to recommend this hotel to anyone unless they had a super-cheap deal."
+
+*Could have been:* mixed or negative
+
+*I chose, because:* negative. The verdict is hedged ("unless… super-cheap deal"), so I went by weight. The reviewer says they have "more bad comments", and the complaints clearly dominate.
 
 **3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+*The post:* "This is a well managed establishment. Staff very friendly and efficient at check-in. Problem with my desk lamp was fixed 3o minutes after calling in the problem and someone called to follow up with me to make sure all was well. Laundry promptly picked up after I called.
+Rooms are clean, spacious and quiet even though near main throughfare. Very limited movie choice compared to other hotels. Strong internet WIFI signal. 
+On a Monday night at 9 PM, they had closed their signature sefood and steak main dining room because ""it was slow"" and patrons had to eat in the bar instead which I felt was a bit strange. Service from the bar was quick and friendly though.
+Gym is well equipped with TV screens on most machines. 
+Decor in rooms and common areas a bit pretentious and stuffy for my taste so I probbaly won't be back, but that is a subjective matter.
+I spent three nights here and have no complaints."
+
+*Could have been:* positive or mixed
+
+*I chose, because:* positive. "Probably won't be back" is hedged and the reviewer calls it a matter of taste, so it isn't a firm verdict. By weight, the review is clearly positive.
 
 ---
 
