@@ -303,6 +303,7 @@ Accuracy moved 0.000 across seeds. Stable enough to trust.
 | **negative** | 5 | 0 | 0 |
 | **mixed** | 5 | 0 | 0 |
 
+
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
@@ -352,7 +353,8 @@ share of the test set; macro-F1 0.267).
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 26 / 30 = 87%
+
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -373,26 +375,53 @@ share of the test set; macro-F1 0.267).
      Pile (a) is the one that matters most for your diagnosis: if you applied a
      written rule two different ways on 30 posts, that is direct evidence about
      what you did across your own 200. -->
+     
+| Post | Staff said | I said | My call, and why |
+|---|---|---|---|
+| Everyone blames the hill at 18 miles. I split the field into people w… | `analysis` | `hot_take` |  |
+| Carbon plates aren't the whole story. My times dropped 2% in the shoe… | `analysis` | `hot_take` |  |
+| Checked the entry lists. 41% of this year's field have never run the … | `analysis` | `hot_take` |  |
+| Three of us ran the same session on the same day, different shoes, wi… | `analysis` | `hot_take` |  |
 
 **1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+*The post:* "Everyone blames the hill at 18 miles. I split the field into people who ran the first half under 1:45 and over, and the slowdown after 18 was almost identical for both groups. If the hill were the problem the fast starters would fall apart harder."
+
+*Staff said / I said:* Staff said `analysis` / I said `hot_take`
+
+*My call, and why:* Staff is right. The split by first-half pace is the whole argument without it nothing is left. I marked it hot_take because the conclusion might be coincidental, but Rule 1 only asks whether the fact carries the argument, not whether it proves it.
+
+*Which pile:* (a)
 
 **2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+*The post:* "Carbon plates aren't the whole story. My times dropped 2% in the shoes and another 2% the following year in the same pair, when the only thing that changed was going from 35 to 50 miles a week."
+
+*Staff said / I said:* Staff said `analysis` / I said `hot_take`
+
+*My call, and why:* Staff is right. The 2% figures are the reason given, so they carry the argument. I judged the evidence too thin to prove the cause, which is a stricter test than Rule 1 sets.
+
+*Which pile:* (a)
+
+**3.**
+*The post:* "Checked the entry lists. 41% of this year's field have never run the distance before, against 26% five years ago. That's why the finish-line photos look different, not because standards dropped."
+
+*Staff said / I said:* Staff said `analysis` / I said `hot_take`
+
+*My call, and why:* Staff is right. The 41% vs 26% comparison is the argument, much like the rule's own `analysis` example (times down 3% since 2017). That example is a correlation too, so "might be coincidental" doesn't make it a hot_take.
+
+*Which pile:* (a)
+
+**4.**
+*The post:* "Three of us ran the same session on the same day, different shoes, within 10 seconds of each other over 5 miles. I'm not saying shoes do nothing, but whatever they do was smaller than the noise between three people."
+
+*Staff said / I said:* Staff said `analysis` / I said `hot_take`
+
+*My call, and why:* Staff is right. The 10-second spread across three runners is what the claim rests on, and the writer even hedges it. I discounted it as a small sample, but Rule 1 doesn't ask about sample size.
+
+*Which pile:* (a)
 
 **What the pattern in my disagreements tells me:**
+
+All four go the same way: staff `analysis`, me `hot_take`. I consistently judged whether the conclusion actually follows from the data, while Rule 1 only asks whether the argument rests on a checkable fact. So this is a systematic stricter reading on my side, not unclear rules.
 
 
 
