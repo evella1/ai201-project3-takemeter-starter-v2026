@@ -277,23 +277,42 @@ I cold-labelled the first 20 reviews myself. Reviews 21-200 were pre-labelled by
 | 4.  |  |  |  |  |  |
 | 5.  |  |  |  |  |  |
 
+**Raw spread table (notebook section 6):**
+
+<!-- Paste the table printed by the "The numbers, as a table" cell here,
+     followed by the stability note line it prints underneath. -->
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.667 | 0.667 | 0.667 | 0.000 |
+| Macro F1 | 0.267 | 0.267 | 0.267 | 0.000 |
+| F1 — `positive` | 0.800 | 0.800 | 0.800 | 0.000 |
+| F1 — `negative` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `mixed` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+Accuracy moved 0.000 across seeds. Stable enough to trust.
+
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | positive | negative | mixed |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **positive** | 20 | 0 | 0 |
+| **negative** | 5 | 0 | 0 |
+| **mixed** | 5 | 0 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
 
-
+All 5 real negative reviews and all 5 real mixed reviews were called positive, and
+nothing ever went the other way. The model never learned the positive/negative or
+positive/mixed boundary at all; it collapsed to always guessing the majority label.
+This happened identically on all three seeds (accuracy 0.667 = exactly the positive
+share of the test set; macro-F1 0.267).
 
 ---
 
@@ -394,6 +413,9 @@ I cold-labelled the first 20 reviews myself. Reviews 21-200 were pre-labelled by
 | 3.  |  |  |  |  |  |
 | 4.  |  |  |  |  |  |
 | 5.  |  |  |  |  |  |
+
+
+
 
 **Did it help, and how do I know:**
 
