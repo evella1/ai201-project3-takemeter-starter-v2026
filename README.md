@@ -247,18 +247,28 @@ I cold-labelled the first 20 reviews myself. Reviews 21-200 were pre-labelled by
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.767 | 0.667 | −0.100 |
+| Macro F1 | 0.613 | 0.267 | −0.346 |
+| F1 — `positive` | 0.905 | 0.800 | −0.105 |
+| F1 — `negative` | 0.571 | 0.000 | −0.571 |
+| F1 — `mixed` | 0.364 | 0.000 | −0.364 |
+
+Difference = trained minus baseline.
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
+I predicted the model would skew positive, because positive reviews are 67% of my data.
+
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
+
+My fine-tuned model did worse than a general model that was never trained on my
+data, on every measure. The baseline finds some negative and mixed reviews (F1 0.57
+and 0.36); the trained model finds none (F1 0.00 for both). So fine-tuning has not
+yet taught the model to recognise my two smaller labels.
 
 
 
@@ -271,11 +281,11 @@ I cold-labelled the first 20 reviews myself. Reviews 21-200 were pre-labelled by
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Macro-F1 | ≥ 0.70 on all seeds | 0.267 | 0.267 | 0.267 | MISSED |
+| 2. Per-label F1 | positive & negative ≥ 0.80; mixed ≥ 0.50 | pos 0.80 / neg 0.00 / mix 0.00 | pos 0.80 / neg 0.00 / mix 0.00 | pos 0.80 / neg 0.00 / mix 0.00 | MISSED |
+| 3. Label balance | no label < 10% or > 80% | pos 67% / neg 16.5% / mix 16.5% | same (whole dataset) | same (whole dataset) | MET |
+| 4. Self-agreement | ≥ 0.60 on 50 re-labelled reviews | — | — | — | NOT MEASURED (re-labelling not done yet) |
+| 5. Confidence | conf ≥ 0.80 → ≥ 90% accurate, ≥ 50% coverage | — | — | — | NOT MEASURABLE as written (notebook reports confidence by thirds only) |
 
 **Raw spread table (notebook section 6):**
 
@@ -324,11 +334,11 @@ share of the test set; macro-F1 0.267).
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Macro-F1 | ≥ 0.70 on all three seeds | MISSED | 0.267 on every seed, far below 0.70. It has to hold on all three; it holds on none. |
+| 2 | Per-label F1 | positive & negative ≥ 0.80; mixed ≥ 0.50 | MISSED | Positive reaches 0.80, but negative and mixed are 0.00 on every seed. The model never predicts either. |
+| 3 | Label balance | no label < 10% or > 80% | MET | positive 67%, negative 16.5%, mixed 16.5% of 200 rows. A dataset property, so the same for every seed. |
+| 4 | Self-agreement | ≥ 0.60 on 50 re-labelled reviews | NOT MEASURED | The second round of labelling hasn't been done yet, so there's nothing to compare. |
+| 5 | Confidence | conf ≥ 0.80 → ≥ 90% accurate, ≥ 50% coverage | NOT MEASURABLE | The notebook reports accuracy by confidence third, not at a 0.80 threshold, so this can't be checked as written. |
 
 **Diagnoses**
 
@@ -341,6 +351,15 @@ share of the test set; macro-F1 0.267).
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
 
+Criteria 1 and 2 (macro-F1 and per-label F1) were missed because the model labels every review positive.
+
+Cause: too few negative and mixed examples (23 each in training, against 93 positive) and too little training (27 steps). Guessing positive every time was the easiest way for the model to lower its loss.
+
+How I know: validation accuracy stayed at 0.677 (the positive share of the validation set) for every epoch on every seed, even as the loss went down. In the confusion matrix every review is predicted positive, and the test accuracy of 0.667 is just the positive share of the test set (20 of 30).
+
+Labelling or model problem: I agreed with the staff labels on 26 of 30 posts (87%), and all four disagreements were the same kind of mistake, not random ones. So I apply a written rule consistently. Inconsistent labels would also make the model mix labels up, but this model never predicts negative or mixed at all. And the baseline, using my definitions, does tell the labels apart. This points to the model and the amount of data, not my labels.
+
+Limit: the staff posts are a different topic with different labels, so they only show how I apply rules in general. 180 of my 200 labels were pre-labelled by Claude and skimmed by me, so criterion 4 (self-agreement) is still needed to check them directly.
 
 
 ---
