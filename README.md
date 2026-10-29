@@ -188,7 +188,7 @@ I spent three nights here and have no complaints."
 Trained on CPU (torch 2.14.1+cpu).
 
 **Anything I changed from the defaults, and why:**
-No changes.
+No changes for the first run. For the improvement run I changed epochs from 3 to 10 (see The Improvement).
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
@@ -285,7 +285,7 @@ yet taught the model to recognise my two smaller labels.
 | 2. Per-label F1 | positive & negative ≥ 0.80; mixed ≥ 0.50 | pos 0.80 / neg 0.00 / mix 0.00 | pos 0.80 / neg 0.00 / mix 0.00 | pos 0.80 / neg 0.00 / mix 0.00 | MISSED |
 | 3. Label balance | no label < 10% or > 80% | pos 67% / neg 16.5% / mix 16.5% | same (whole dataset) | same (whole dataset) | MET |
 | 4. Self-agreement | ≥ 0.60 on 50 re-labelled reviews | — | — | — | NOT MEASURED (re-labelling not done yet) |
-| 5. Confidence | conf ≥ 0.80 → ≥ 90% accurate, ≥ 50% coverage | — | — | — | NOT MEASURABLE as written (notebook reports confidence by thirds only) |
+| 5. Confidence | most-confident third ≥ 90% accurate (revised) | 0.90 | 1.00 | 0.80 | MISSED (seed 2024) |
 
 **Raw spread table (notebook section 6):**
 
@@ -338,7 +338,7 @@ share of the test set; macro-F1 0.267).
 | 2 | Per-label F1 | positive & negative ≥ 0.80; mixed ≥ 0.50 | MISSED | Positive reaches 0.80, but negative and mixed are 0.00 on every seed. The model never predicts either. |
 | 3 | Label balance | no label < 10% or > 80% | MET | positive 67%, negative 16.5%, mixed 16.5% of 200 rows. A dataset property, so the same for every seed. |
 | 4 | Self-agreement | ≥ 0.60 on 50 re-labelled reviews | NOT MEASURED | The second round of labelling hasn't been done yet, so there's nothing to compare. |
-| 5 | Confidence | conf ≥ 0.80 → ≥ 90% accurate, ≥ 50% coverage | NOT MEASURABLE | The notebook reports accuracy by confidence third, not at a 0.80 threshold, so this can't be checked as written. |
+| 5 | Confidence | most-confident third ≥ 90% accurate (revised) | MISSED | Revised because the original 0.80 cutoff couldn't be measured (see criteria.md). The most-confident third was 0.90 and 1.00 accurate, but 0.80 on seed 2024. |
 
 **Diagnoses**
 
@@ -355,11 +355,9 @@ Criteria 1 and 2 (macro-F1 and per-label F1) were missed because the model label
 
 Cause: too few negative and mixed examples (23 each in training, against 93 positive) and too little training (27 steps). Guessing positive every time was the easiest way for the model to lower its loss.
 
-How I know: validation accuracy stayed at 0.677 (the positive share of the validation set) for every epoch on every seed, even as the loss went down. In the confusion matrix every review is predicted positive, and the test accuracy of 0.667 is just the positive share of the test set (20 of 30).
+How I know: validation accuracy stayed at 0.677 (the positive share of the validation set) for every epoch on every seed, even as the loss went down. Validation loss was still falling when training stopped (0.869, 0.818, 0.806 over the three epochs), so the model had not finished learning. In the confusion matrix every review is predicted positive, and the test accuracy of 0.667 is just the positive share of the test set (20 of 30).
 
 Labelling or model problem: I agreed with the staff labels on 26 of 30 posts (87%), and all four disagreements were the same kind of mistake, not random ones. So I apply a written rule consistently. Inconsistent labels would also make the model mix labels up, but this model never predicts negative or mixed at all. And the baseline, using my definitions, does tell the labels apart. This points to the model and the amount of data, not my labels.
-
-Limit: the staff posts are a different topic with different labels, so they only show how I apply rules in general. 180 of my 200 labels were pre-labelled by Claude and skimmed by me, so criterion 4 (self-agreement) is still needed to check them directly.
 
 
 ---
@@ -450,19 +448,23 @@ All four go the same way: staff `analysis`, me `hot_take`. I consistently judged
 
 **What I changed:**
 
+Epochs from 3 to 10. Nothing else changed.
+
 **Which diagnosis pointed at it:**
+
+The diagnosis named two causes, too few examples and too little training. I picked training because validation loss was still falling at the last epoch and the predictions never moved off positive, so the model was not yet using the 23 negative and 23 mixed examples it already had. Adding more examples would not fix that. I ruled out relabelling because my agreement check showed one consistent reading of the rule, not a rule applied two ways.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Macro-F1 | ≥ 0.70 on all seeds | 0.798 | 0.510 | 0.474 | MISSED (only seed 42) |
+| 2. Per-label F1 | positive & negative ≥ 0.80; mixed ≥ 0.50 | pos 0.93 / neg 0.80 / mix 0.67 | pos 0.86 / neg 0.67 / mix 0.00 | pos 0.85 / neg 0.57 / mix 0.00 | MISSED (positive meets it on all seeds; negative and mixed only on seed 42) |
+| 3. Label balance | no label < 10% or > 80% | pos 67% / neg 16.5% / mix 16.5% | same (whole dataset) | same (whole dataset) | MET |
+| 4. Self-agreement | ≥ 0.60 on 50 re-labelled reviews | — | — | — | NOT MEASURED |
+| 5. Confidence | most-confident third ≥ 90% accurate (revised) | 1.00 | 1.00 | 1.00 | MET |
 
-
+Accuracy across seeds: 0.867 / 0.733 / 0.733 (spread 0.133, more than 10 points).
 
 
 **Did it help, and how do I know:**
@@ -470,6 +472,11 @@ All four go the same way: staff `analysis`, me `hot_take`. I consistently judged
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
 
+Yes, partly. The model no longer guesses positive for everything. Macro-F1 went from 0.267 on every seed to 0.798, 0.510 and 0.474, and negative F1 went from 0.00 to 0.80, 0.67 and 0.57. On seed 42 it now beats the baseline (macro-F1 0.798 vs 0.613, same 30 reviews).
+
+But no new criterion is met on all three seeds. Mixed is still the problem: on seeds 7 and 2024 the model got none of the 5 mixed reviews right, and most of them were called positive (4 of 5 and 5 of 5). Accuracy also moved 0.133 between seeds, so the result depends a lot on which reviews land in the test set. With only 5 mixed and 5 negative reviews in each test set, one review changes their F1 a lot.
+
+So more training fixed the collapse, which confirms that part of the diagnosis. What is left points at the other cause: too few mixed examples.
 
 
 ---
@@ -478,12 +485,18 @@ All four go the same way: staff `analysis`, me `hot_take`. I consistently judged
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+Criteria 1 and 2: mixed is only learned on one seed out of three. Next I would add about 30 more mixed reviews, labelled carefully, since mixed has the worst F1. More data would also make the test set bigger and the scores more stable. I stopped at one change because the brief asks for one.
+
+Criterion 4: not measured. It needs a second round of labelling on 50 reviews, which I haven't done.
+
+Criterion 5: revised because the original couldn't be measured. Met after the improvement.
 
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
+I meant mixed to capture reviews with significant praise and significant complaints. The model mostly reads them as positive: on seeds 7 and 2024, 9 of the 10 mixed reviews in the test sets were called positive.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════

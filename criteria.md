@@ -111,6 +111,10 @@ Predictions with confidence ≥ 0.80 are ≥ 90% accurate, and cover at least 50
 
 A confident prediction should be trustworthy; the coverage condition stops a model from passing by being confident on only a few easy cases.
 
+> **Revised in unit 6:** The most-confident third of test predictions is at least 90% accurate, on all three seeds.
+>
+> **Why revised:** the notebook reports accuracy by confidence third, not at a 0.80 cutoff, so the original couldn't be measured. I kept the 90% target. Coverage is now fixed at a third of the test set.
+
 ---
 
 <!-- ─────────────────────────────────────────────────────────────────────────
